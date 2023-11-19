@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl2f4hctb48gx"]
+
+[ext_resource type="PackedScene" uid="uid://bydcnhp2iyxhe" path="res://Scenes/player.tscn" id="1_tk60y"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(128, 328, 128, 624, 1024, 624, 1024, 328, 136, 328, 136, 336, 1016, 336, 1016, 616, 136, 616, 136, 336)
+
+[node name="Top" type="ColorRect" parent="StaticBody2D"]
+offset_left = 128.0
+offset_top = 328.0
+offset_right = 1024.0
+offset_bottom = 336.0
+
+[node name="Left" type="ColorRect" parent="StaticBody2D"]
+offset_left = 128.0
+offset_top = 336.0
+offset_right = 136.0
+offset_bottom = 616.0
+
+[node name="Right" type="ColorRect" parent="StaticBody2D"]
+offset_left = 1016.0
+offset_top = 336.0
+offset_right = 1024.0
+offset_bottom = 616.0
+
+[node name="Bottom" type="ColorRect" parent="StaticBody2D"]
+offset_left = 128.0
+offset_top = 616.0
+offset_right = 1024.0
+offset_bottom = 624.0
+
+[node name="Player" parent="." instance=ExtResource("1_tk60y")]
+position = Vector2(576, 512)

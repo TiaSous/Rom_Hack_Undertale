@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bydcnhp2iyxhe"]
+
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_2sicc"]
+[ext_resource type="Texture2D" uid="uid://dumml1rojugm4" path="res://Asset/red-pixel-heart-2.png" id="1_daa0m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgxpx"]
+size = Vector2(56, 52)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_2sicc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0998395, 0.1)
+texture = ExtResource("1_daa0m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qgxpx")
