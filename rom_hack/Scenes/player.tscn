@@ -1,17 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://bydcnhp2iyxhe"]
+[gd_scene load_steps=7 format=3 uid="uid://bydcnhp2iyxhe"]
 
-[ext_resource type="Script" path="res://Scenes/player.gd" id="1_2sicc"]
-[ext_resource type="Texture2D" uid="uid://dumml1rojugm4" path="res://Asset/red-pixel-heart-2.png" id="1_daa0m"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_p2a2i"]
+[ext_resource type="Texture2D" uid="uid://7c6hn1gb1kxk" path="res://Asset/7c4606a37587a0f.png" id="2_i6rpx"]
+[ext_resource type="Texture2D" uid="uid://cgv53gqbtmwha" path="res://Asset/toppng.com-and-blank-effect-transparent-600x458.png" id="3_5jjkf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wdmld"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i6rpx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5jjkf")
+}],
+"loop": true,
+"name": &"damage",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qgxpx"]
-size = Vector2(56, 52)
+size = Vector2(60, 60)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ejalf"]
+radius = 20.0
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_2sicc")
+scale = Vector2(0.35, 0.35)
+script = ExtResource("1_p2a2i")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.0998395, 0.1)
-texture = ExtResource("1_daa0m")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_wdmld")
+animation = &"damage"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qgxpx")
+
+[node name="Damage" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage"]
+shape = SubResource("CircleShape2D_ejalf")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="area_entered" from="Damage" to="." method="_on_can_take_damage_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

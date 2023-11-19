@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://bl2f4hctb48gx"]
+[gd_scene load_steps=5 format=3 uid="uid://bl2f4hctb48gx"]
 
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_pex2i"]
 [ext_resource type="PackedScene" uid="uid://bydcnhp2iyxhe" path="res://Scenes/player.tscn" id="1_tk60y"]
+[ext_resource type="FontFile" uid="uid://by1v4bwqx2v5e" path="res://Font/MonsterFriendBack.otf" id="3_82hud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yayv"]
+size = Vector2(17, 40)
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_pex2i")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 1152.0
@@ -10,33 +16,65 @@ offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -75)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(128, 328, 128, 624, 1024, 624, 1024, 328, 136, 328, 136, 336, 1016, 336, 1016, 616, 136, 616, 136, 336)
+polygon = PackedVector2Array(320, 394, 321, 624, 832, 624, 832, 394, 320, 394, 328, 402, 824, 402, 824, 616, 328, 616, 328, 402)
 
 [node name="Top" type="ColorRect" parent="StaticBody2D"]
-offset_left = 128.0
-offset_top = 328.0
-offset_right = 1024.0
-offset_bottom = 336.0
+offset_left = 320.0
+offset_top = 394.0
+offset_right = 832.0
+offset_bottom = 402.0
 
 [node name="Left" type="ColorRect" parent="StaticBody2D"]
-offset_left = 128.0
-offset_top = 336.0
-offset_right = 136.0
-offset_bottom = 616.0
+offset_left = 320.0
+offset_top = 399.0
+offset_right = 328.0
+offset_bottom = 619.0
 
 [node name="Right" type="ColorRect" parent="StaticBody2D"]
-offset_left = 1016.0
-offset_top = 336.0
-offset_right = 1024.0
-offset_bottom = 616.0
+offset_left = 824.0
+offset_top = 400.0
+offset_right = 832.0
+offset_bottom = 619.0
 
 [node name="Bottom" type="ColorRect" parent="StaticBody2D"]
-offset_left = 128.0
+offset_left = 320.0
 offset_top = 616.0
-offset_right = 1024.0
+offset_right = 832.0
 offset_bottom = 624.0
 
 [node name="Player" parent="." instance=ExtResource("1_tk60y")]
-position = Vector2(576, 512)
+position = Vector2(552, 416)
+
+[node name="Life" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 541.0
+offset_top = 556.0
+offset_right = 601.0
+offset_bottom = 621.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_82hud")
+theme_override_font_sizes/font_size = 16
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="ColorRect" type="ColorRect" parent="Area2D"]
+offset_left = 666.0
+offset_top = 388.0
+offset_right = 683.0
+offset_bottom = 428.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(674.5, 408)
+shape = SubResource("RectangleShape2D_8yayv")
