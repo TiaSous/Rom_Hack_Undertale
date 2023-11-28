@@ -2,13 +2,12 @@
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_pex2i"]
 [ext_resource type="PackedScene" uid="uid://bydcnhp2iyxhe" path="res://Scenes/player.tscn" id="1_tk60y"]
+[ext_resource type="PackedScene" uid="uid://whi2hbeyxi4s" path="res://Scenes/enemy.tscn" id="2_pbhna"]
 [ext_resource type="FontFile" uid="uid://by1v4bwqx2v5e" path="res://Font/MonsterFriendBack.otf" id="3_82hud"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yayv"]
-size = Vector2(17, 40)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pex2i")
+enemy_scene = ExtResource("2_pbhna")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 1152.0
@@ -66,15 +65,7 @@ text = "20"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_mask = 0
+[node name="TimeAttack" type="Timer" parent="."]
+autostart = true
 
-[node name="ColorRect" type="ColorRect" parent="Area2D"]
-offset_left = 666.0
-offset_top = 388.0
-offset_right = 683.0
-offset_bottom = 428.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(674.5, 408)
-shape = SubResource("RectangleShape2D_8yayv")
+[connection signal="timeout" from="TimeAttack" to="." method="_on_time_attack_timeout"]
