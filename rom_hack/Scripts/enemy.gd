@@ -1,11 +1,12 @@
 extends RigidBody2D
 @onready var enemy = $"."
 
-@onready var player = $Player
-var motion
-func _ready():
-	position=Vector2(0, 0)
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	motion = position.direction_to(player.position) * 10
-	motion = move_and_collide(motion)
+var speed = 400
+var player_pos
+var pente = 0
+
+func player_info(player):
+	player_pos = player.position
+	pente = player_pos - enemy.position
+	enemy.linear_velocity = pente.normalized() * speed
+

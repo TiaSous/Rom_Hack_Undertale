@@ -7,6 +7,7 @@ size = Vector2(16, 32)
 
 [node name="Enemy" type="RigidBody2D"]
 collision_mask = 0
+gravity_scale = 0.0
 script = ExtResource("1_3nf7e")
 
 [node name="ColorRect" type="ColorRect" parent="."]

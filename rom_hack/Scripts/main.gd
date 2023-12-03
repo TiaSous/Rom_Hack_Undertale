@@ -20,3 +20,4 @@ func _on_time_attack_timeout():
 	var enemy = enemy_scene.instantiate()
 	enemy.position = Vector2(600, 250)
 	add_child(enemy)
+	enemy.player_info(player)
